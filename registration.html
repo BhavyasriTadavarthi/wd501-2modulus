@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Registration Form</title>
+        <style>
+            .full{
+                background-image: linear-gradient(to right, rgb(238, 97, 172) , rgb(234, 234, 89));
+                bottom: 10px;
+            }
+            
+            .box{
+                border: 10px solid rgb(236, 242, 236);
+                background-color:white;
+                margin-left: 350px;
+                margin-right: 350px;
+                box-shadow: 2px 2px 2px 2px rgb(231, 223, 223);
+                padding: 20px;
+                width:700px;
+                height:400px;
+                
+            }
+            h2{
+                text-align: center;
+            }
+            .col{
+                width:450px;
+                box-shadow: 2px 2px 2px 2px rgb(230, 224, 224);
+                height: 30px;
+                border-color: white;
+                border-radius: 10px;
+            }
+            .submit{
+                background-color: rgb(51, 223, 51);
+                border-radius: 20px;
+                width:100px;
+                height: 40px;
+                color: white;
+                border: greenyellow;
+
+            }
+            .bod{
+                width:450px;
+                box-shadow: 2px 2px 2px 2px rgb(230, 224, 224);
+                height: 30px;
+                border-color: white;
+                color:red;
+                border-radius: 10px;
+            }
+           .t1{
+              width: 100%;
+              }
+              th{
+                padding: 5px;
+                text-align: center;
+              }
+          
+            </style>
+    </head>
+    <body class="full">
+        
+             <div>
+              <form id="form">
+                 <div class="box">
+                      <h2>Registration Form</h2>
+                      <div>
+                         <strong>Name</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                         <input type="text" class="col" placeholder="Enter Full Name" required id="name" value=""><br><br>
+                      </div>
+                      <div>
+                        <strong>Email</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="email" class="col" placeholder="Enter Email" required id="email" value=""><br><br>
+                      </div>
+                      <div> 
+                        <strong>Password</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="password" class="col" placeholder="Enter password" required id="password" value=""><br><br>
+                     </div>
+                      <div>
+                        <strong>Date of Birth</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="date" class="bod" placeholder="DD/MM/YYYY" required id="date" min="1980-04-30" max="2005-04-30"><br><br>
+                    </div>
+                     <div> 
+                        <input type="checkbox" required id="acc">Accept Terms and Conditions<br><br>
+                    </div>
+                      <div>
+                         <button onclick="result()" class="submit" id="submit">Submit</button>
+                     </div>
+                 </div>
+                 </form>
+                 <br><br><br><br><br><br>
+                 <div class="box">
+                   <h2>ENTRIES</h2>
+                     <table class="t1" border="4" id="table">
+                      <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>password</th>
+                        <th>DOB</th>
+                        <th>Accepted Terms?</th>
+                       </tr>
+                     </table>
+                 </div>
+       </div>
+       <script type="text/javascript">
+        var form = document.getElementById('form');
+    var tableBody = document.querySelector('#table tbody');
+    form.addEventListener('submit',function(event){
+        event.preventDefault();
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var date = document.getElementById('date').value;
+        var acc = document.getElementById('acc').checked;
+        localStorage.setItem("Name",name);
+        localStorage.setItem("Email", email);
+        localStorage.setItem("Password", password);
+        localStorage.setItem("Date of Birth", date);
+        localStorage.setItem("Accept terms?", acc);
+    var newRow = document.createElement('tr');
+    newRow.innerHTML = `
+    <td>${name}</td>
+    <td>${email}</td>
+    <td>${password}</td>
+    <td>${date}</td>
+    <td>${acc ? 'true' : 'false'}</td>`;
+    tableBody.appendChild(newRow);
+    form.reset(); });
+    </script>
+
+    </body>
+</html>
